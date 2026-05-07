@@ -9,38 +9,175 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as NuestraHistoriaRouteImport } from './routes/nuestra-historia'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as ColeccionRouteImport } from './routes/coleccion'
+import { Route as CertificadosRouteImport } from './routes/certificados'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductoHandleRouteImport } from './routes/producto.$handle'
 
+const NuestraHistoriaRoute = NuestraHistoriaRouteImport.update({
+  id: '/nuestra-historia',
+  path: '/nuestra-historia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColeccionRoute = ColeccionRouteImport.update({
+  id: '/coleccion',
+  path: '/coleccion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CertificadosRoute = CertificadosRouteImport.update({
+  id: '/certificados',
+  path: '/certificados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductoHandleRoute = ProductoHandleRouteImport.update({
+  id: '/producto/$handle',
+  path: '/producto/$handle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/certificados': typeof CertificadosRoute
+  '/coleccion': typeof ColeccionRoute
+  '/contacto': typeof ContactoRoute
+  '/faq': typeof FaqRoute
+  '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/certificados': typeof CertificadosRoute
+  '/coleccion': typeof ColeccionRoute
+  '/contacto': typeof ContactoRoute
+  '/faq': typeof FaqRoute
+  '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/blog': typeof BlogRoute
+  '/certificados': typeof CertificadosRoute
+  '/coleccion': typeof ColeccionRoute
+  '/contacto': typeof ContactoRoute
+  '/faq': typeof FaqRoute
+  '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/certificados'
+    | '/coleccion'
+    | '/contacto'
+    | '/faq'
+    | '/nuestra-historia'
+    | '/producto/$handle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/blog'
+    | '/certificados'
+    | '/coleccion'
+    | '/contacto'
+    | '/faq'
+    | '/nuestra-historia'
+    | '/producto/$handle'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/certificados'
+    | '/coleccion'
+    | '/contacto'
+    | '/faq'
+    | '/nuestra-historia'
+    | '/producto/$handle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BlogRoute: typeof BlogRoute
+  CertificadosRoute: typeof CertificadosRoute
+  ColeccionRoute: typeof ColeccionRoute
+  ContactoRoute: typeof ContactoRoute
+  FaqRoute: typeof FaqRoute
+  NuestraHistoriaRoute: typeof NuestraHistoriaRoute
+  ProductoHandleRoute: typeof ProductoHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/nuestra-historia': {
+      id: '/nuestra-historia'
+      path: '/nuestra-historia'
+      fullPath: '/nuestra-historia'
+      preLoaderRoute: typeof NuestraHistoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coleccion': {
+      id: '/coleccion'
+      path: '/coleccion'
+      fullPath: '/coleccion'
+      preLoaderRoute: typeof ColeccionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/certificados': {
+      id: '/certificados'
+      path: '/certificados'
+      fullPath: '/certificados'
+      preLoaderRoute: typeof CertificadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,12 +185,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/producto/$handle': {
+      id: '/producto/$handle'
+      path: '/producto/$handle'
+      fullPath: '/producto/$handle'
+      preLoaderRoute: typeof ProductoHandleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BlogRoute: BlogRoute,
+  CertificadosRoute: CertificadosRoute,
+  ColeccionRoute: ColeccionRoute,
+  ContactoRoute: ContactoRoute,
+  FaqRoute: FaqRoute,
+  NuestraHistoriaRoute: NuestraHistoriaRoute,
+  ProductoHandleRoute: ProductoHandleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
