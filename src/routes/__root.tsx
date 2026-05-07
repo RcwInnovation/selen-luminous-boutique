@@ -1,32 +1,28 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
-  Link,
   createRootRouteWithContext,
   useRouter,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-
+import { Toaster } from "sonner";
+import { useState } from "react";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { CartDrawer } from "@/components/CartDrawer";
+import { useCartSync } from "@/hooks/useCartSync";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+        <h1 className="font-heading text-7xl font-light text-gold">404</h1>
+        <p className="mt-4 text-muted-foreground">La página que buscas no existe.</p>
+        <a href="/" className="inline-block mt-6 bg-gold-gradient text-primary-foreground px-6 py-2.5 rounded text-sm tracking-wider uppercase">
+          Volver al inicio
+        </a>
       </div>
     </div>
   );
@@ -35,32 +31,14 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
+        <h1 className="font-heading text-xl">Algo salió mal</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Inténtalo de nuevo o vuelve al inicio.</p>
+        <div className="mt-6 flex gap-2 justify-center">
+          <button onClick={() => { router.invalidate(); reset(); }} className="bg-gold-gradient text-primary-foreground px-4 py-2 rounded text-sm">Reintentar</button>
+          <a href="/" className="border border-border px-4 py-2 rounded text-sm">Inicio</a>
         </div>
       </div>
     </div>
@@ -72,20 +50,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "SELEN Jewelry — Fragmentos de Luz Convertidos en Oro" },
+      { name: "description", content: "Joyería femenina premium inspirada en Selene. Piezas únicas bañadas en oro con esmeraldas. Elegancia, misterio y luz." },
+      { property: "og:title", content: "SELEN Jewelry — Fragmentos de Luz Convertidos en Oro" },
+      { property: "og:description", content: "Joyería femenina premium inspirada en Selene. Piezas únicas bañadas en oro con esmeraldas." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
     ],
   }),
   shellComponent: RootShell,
@@ -96,7 +69,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <HeadContent />
       </head>
@@ -108,12 +81,28 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+function AppLayout() {
+  const [cartOpen, setCartOpen] = useState(false);
+  useCartSync();
 
   return (
+    <div className="min-h-screen flex flex-col">
+      <Header onCartOpen={() => setCartOpen(true)} />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+      <Toaster position="top-center" richColors />
+    </div>
+  );
+}
+
+function RootComponent() {
+  const { queryClient } = Route.useRouteContext();
+  return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <AppLayout />
     </QueryClientProvider>
   );
 }
