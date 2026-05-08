@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PoliticaEnviosRouteImport } from './routes/politica-envios'
 import { Route as NuestraHistoriaRouteImport } from './routes/nuestra-historia'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -18,6 +19,11 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductoHandleRouteImport } from './routes/producto.$handle'
 
+const PoliticaEnviosRoute = PoliticaEnviosRouteImport.update({
+  id: '/politica-envios',
+  path: '/politica-envios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NuestraHistoriaRoute = NuestraHistoriaRouteImport.update({
   id: '/nuestra-historia',
   path: '/nuestra-historia',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/contacto': typeof ContactoRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/politica-envios': typeof PoliticaEnviosRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/contacto': typeof ContactoRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/politica-envios': typeof PoliticaEnviosRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesById {
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/contacto': typeof ContactoRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
+  '/politica-envios': typeof PoliticaEnviosRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/faq'
     | '/nuestra-historia'
+    | '/politica-envios'
     | '/producto/$handle'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/faq'
     | '/nuestra-historia'
+    | '/politica-envios'
     | '/producto/$handle'
   id:
     | '__root__'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/faq'
     | '/nuestra-historia'
+    | '/politica-envios'
     | '/producto/$handle'
   fileRoutesById: FileRoutesById
 }
@@ -131,11 +143,19 @@ export interface RootRouteChildren {
   ContactoRoute: typeof ContactoRoute
   FaqRoute: typeof FaqRoute
   NuestraHistoriaRoute: typeof NuestraHistoriaRoute
+  PoliticaEnviosRoute: typeof PoliticaEnviosRoute
   ProductoHandleRoute: typeof ProductoHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/politica-envios': {
+      id: '/politica-envios'
+      path: '/politica-envios'
+      fullPath: '/politica-envios'
+      preLoaderRoute: typeof PoliticaEnviosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nuestra-historia': {
       id: '/nuestra-historia'
       path: '/nuestra-historia'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactoRoute: ContactoRoute,
   FaqRoute: FaqRoute,
   NuestraHistoriaRoute: NuestraHistoriaRoute,
+  PoliticaEnviosRoute: PoliticaEnviosRoute,
   ProductoHandleRoute: ProductoHandleRoute,
 }
 export const routeTree = rootRouteImport

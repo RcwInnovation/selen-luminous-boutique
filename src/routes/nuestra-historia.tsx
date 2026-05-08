@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Moon, Sparkles } from "lucide-react";
+import selenHistoria from "@/assets/selen-historia.png";
 
 export const Route = createFileRoute("/nuestra-historia")({
   head: () => ({
@@ -23,17 +24,33 @@ function NuestraHistoriaPage() {
         </div>
       </section>
 
-      {/* Story Content */}
-      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-12">
-        <div className="text-center">
-          <Moon className="w-8 h-8 text-gold mx-auto mb-6" />
-          <h2 className="font-heading text-2xl sm:text-3xl font-light mb-6">El amor de una madre por su hija</h2>
-          <p className="text-muted-foreground leading-relaxed">
-            SELEN nace de la luz más pura: el amor incondicional de una madre por su hija. Esa conexión profunda,
-            esa energía que protege y guía, se convirtió en la inspiración para crear algo que perdurara para siempre.
-          </p>
+      {/* Photo + intro */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl">
+            <img
+              src={selenHistoria}
+              alt="SELEN Jewelry — Madre e hija con joyas de esmeralda"
+              className="w-full h-auto object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+          </div>
+          <div className="space-y-6">
+            <Moon className="w-8 h-8 text-gold" />
+            <h2 className="font-heading text-2xl sm:text-3xl font-light">El amor de una madre por su hija</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              SELEN nace de la luz más pura: el amor incondicional de una madre por su hija. Esa conexión profunda,
+              esa energía que protege y guía, se convirtió en la inspiración para crear algo que perdurara para siempre.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              Cada pieza lleva consigo esa esencia: la calidez del abrazo materno convertida en oro y esmeraldas.
+            </p>
+          </div>
         </div>
+      </section>
 
+      {/* Story Content */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-12">
         <div className="text-center">
           <Sparkles className="w-8 h-8 text-gold mx-auto mb-6" />
           <h2 className="font-heading text-2xl sm:text-3xl font-light mb-6">Inspirada en Selene</h2>
