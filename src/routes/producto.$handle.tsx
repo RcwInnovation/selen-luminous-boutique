@@ -9,8 +9,10 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/producto/$handle")({
   head: () => ({
     meta: [
-      { title: "Producto — SELEN Jewelry" },
-      { name: "description", content: "Detalle de producto SELEN Jewelry. Joyería premium con esmeraldas y oro champagne." },
+      { title: "Joya Premium — SELEN Jewelry | Oro y Esmeraldas Colombia" },
+      { name: "description", content: "Pieza exclusiva de joyería premium SELEN: oro de alta calidad con esmeraldas colombianas certificadas. Diseño artesanal, certificado de autenticidad incluido. Envíos a toda Colombia e internacionales." },
+      { property: "og:type", content: "product" },
+      { name: "keywords", content: "joya premium, gold jewelry, emerald jewelry, joyería artesanal Colombia, luxury jewelry piece" },
     ],
   }),
   component: ProductPage,

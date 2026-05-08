@@ -5,9 +5,13 @@ import selenHistoria from "@/assets/selen-historia.png";
 export const Route = createFileRoute("/nuestra-historia")({
   head: () => ({
     meta: [
-      { title: "Nuestra Historia — SELEN Jewelry" },
-      { name: "description", content: "Descubre el origen emocional de SELEN Jewelry: el amor de una madre por su hija y la inspiración en Selene, diosa de la luna." },
+      { title: "Nuestra Historia — SELEN Jewelry | Joyería Artesanal Colombia" },
+      { name: "description", content: "Descubre el origen de SELEN Jewelry: el amor de una madre, la inspiración en Selene y la creación de joyería artesanal premium en oro con esmeraldas colombianas. Handcrafted luxury jewelry from Colombia." },
+      { property: "og:title", content: "Nuestra Historia — SELEN Jewelry Colombia" },
+      { property: "og:description", content: "SELEN nace del amor de una madre por su hija. Joyería artesanal premium inspirada en Selene, diosa de la luna." },
+      { name: "keywords", content: "historia SELEN Jewelry, joyería artesanal Colombia, handcrafted jewelry, marca joyería colombiana, luxury brand story" },
     ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/nuestra-historia" }],
   }),
   component: NuestraHistoriaPage,
 });

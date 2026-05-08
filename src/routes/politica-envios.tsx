@@ -4,9 +4,13 @@ import { Package, Globe, Clock, Shield, MapPin, ChevronRight } from "lucide-reac
 export const Route = createFileRoute("/politica-envios")({
   head: () => ({
     meta: [
-      { title: "Política de Envíos — SELEN Jewelry" },
-      { name: "description", content: "Política de envíos nacionales e internacionales de SELEN Jewelry. Envíos desde Colombia a todo el mundo." },
+      { title: "Envíos Nacionales e Internacionales — SELEN Jewelry Colombia" },
+      { name: "description", content: "Envíos de joyería a toda Colombia y envíos internacionales a cualquier parte del mundo. Empaque premium, seguimiento y seguro incluido. SELEN Jewelry — joyería de lujo desde Bogotá, Colombia." },
+      { property: "og:title", content: "Política de Envíos — SELEN Jewelry Colombia" },
+      { property: "og:description", content: "Envíos nacionales a toda Colombia e internacionales a todo el mundo. Empaque de lujo y seguro incluido." },
+      { name: "keywords", content: "envíos joyería Colombia, envío internacional joyas, shipping jewelry Colombia, empaque premium joyería" },
     ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/politica-envios" }],
   }),
   component: PoliticaEnviosPage,
 });

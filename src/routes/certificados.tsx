@@ -4,9 +4,13 @@ import { Shield, Award, FileCheck } from "lucide-react";
 export const Route = createFileRoute("/certificados")({
   head: () => ({
     meta: [
-      { title: "Certificados de Autenticidad — SELEN Jewelry" },
-      { name: "description", content: "Cada joya SELEN incluye certificado premium de autenticidad. Garantía de calidad y materiales." },
+      { title: "Certificados de Autenticidad — SELEN Jewelry Colombia" },
+      { name: "description", content: "Cada joya SELEN incluye certificado premium de autenticidad con garantía de calidad sobre materiales: oro, esmeraldas colombianas y diamantes certificados. Confianza y transparencia en joyería de lujo." },
+      { property: "og:title", content: "Certificados de Autenticidad — SELEN Jewelry" },
+      { property: "og:description", content: "Garantía de calidad, materiales certificados y transparencia total en cada pieza de joyería premium." },
+      { name: "keywords", content: "certificado autenticidad joyas, garantía joyería premium, esmeraldas certificadas, certified jewelry, quality guarantee" },
     ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/certificados" }],
   }),
   component: CertificadosPage,
 });
