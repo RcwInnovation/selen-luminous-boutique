@@ -2,8 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { storefrontApiRequest, STOREFRONT_PRODUCTS_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/ProductCard";
+import { HeroSlider } from "@/components/HeroSlider";
 import { Star, Shield, Gem, Heart, ChevronRight } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -20,27 +20,8 @@ function HomePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        <img src={heroBg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/30 via-foreground/20 to-foreground/50" />
-        <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-          <p className="text-primary-foreground/80 text-xs tracking-[0.3em] uppercase mb-4 fade-in">SELEN Jewelry</p>
-          <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-light text-primary-foreground leading-tight fade-in" style={{ animationDelay: "0.2s" }}>
-            Fragmentos de luz<br />convertidos en oro
-          </h1>
-          <p className="text-primary-foreground/70 mt-6 text-sm sm:text-base max-w-lg mx-auto fade-in" style={{ animationDelay: "0.4s" }}>
-            Cada pieza de SELEN es un tributo a la energía femenina que guía, protege y brilla incluso en silencio.
-          </p>
-          <Link
-            to="/coleccion"
-            className="inline-flex items-center gap-2 mt-8 bg-gold-gradient text-primary-foreground px-8 py-3.5 rounded text-sm tracking-[0.15em] uppercase font-medium shimmer hover:opacity-90 transition-opacity fade-in"
-            style={{ animationDelay: "0.6s" }}
-          >
-            Descubrir la colección <ChevronRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

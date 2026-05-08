@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { storefrontApiRequest, PRODUCT_BY_HANDLE_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ShoppingBag, Loader2, Shield, Gem, Heart } from "lucide-react";
 import { toast } from "sonner";
 
@@ -21,6 +21,9 @@ function ProductPage() {
   const addItem = useCartStore((s) => s.addItem);
   const isCartLoading = useCartStore((s) => s.isLoading);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [selectedVariantIdx, setSelectedVariantIdx] = useState(0);
+  const [zoomStyle, setZoomStyle] = useState<React.CSSProperties>({});
+  const imgRef = useRef<HTMLDivElement>(null);
 
   const { data: product, isLoading } = useQuery({
     queryKey: ["shopify-product", handle],
@@ -30,6 +33,18 @@ function ProductPage() {
       return { node: data.data.productByHandle } as ShopifyProduct;
     },
   });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!imgRef.current) return;
+    const rect = imgRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomStyle({ transformOrigin: `${x}% ${y}%`, transform: "scale(2)" });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomStyle({ transform: "scale(1)" });
+  };
 
   if (isLoading) {
     return (
@@ -54,18 +69,20 @@ function ProductPage() {
     );
   }
 
-  const variant = product.node.variants.edges[0]?.node;
+  const variants = product.node.variants.edges.filter(v => v.node.title !== "Default Title");
+  const selectedVariant = variants.length > 0 ? variants[selectedVariantIdx]?.node : product.node.variants.edges[0]?.node;
   const images = product.node.images.edges;
+  const options = product.node.options?.filter(o => o.name !== "Title") || [];
 
   const handleAddToCart = async () => {
-    if (!variant) return;
+    if (!selectedVariant) return;
     await addItem({
       product,
-      variantId: variant.id,
-      variantTitle: variant.title,
-      price: variant.price,
+      variantId: selectedVariant.id,
+      variantTitle: selectedVariant.title,
+      price: selectedVariant.price,
       quantity: 1,
-      selectedOptions: variant.selectedOptions || [],
+      selectedOptions: selectedVariant.selectedOptions || [],
     });
     toast.success("Añadido al carrito", { description: product.node.title });
   };
@@ -73,14 +90,20 @@ function ProductPage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
       <div className="grid md:grid-cols-2 gap-8 lg:gap-16">
-        {/* Images */}
+        {/* Images with zoom */}
         <div className="space-y-4">
-          <div className="aspect-square bg-sand rounded-lg overflow-hidden">
+          <div
+            ref={imgRef}
+            className="aspect-square bg-sand rounded-lg overflow-hidden cursor-zoom-in"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
             {images[selectedImage] && (
               <img
                 src={images[selectedImage].node.url}
                 alt={images[selectedImage].node.altText || product.node.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-300"
+                style={zoomStyle}
               />
             )}
           </div>
@@ -104,16 +127,50 @@ function ProductPage() {
           <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">SELEN Jewelry</p>
           <h1 className="font-heading text-3xl sm:text-4xl font-light">{product.node.title}</h1>
           <p className="text-2xl text-gold-dark font-heading mt-3">
-            ${parseFloat(product.node.priceRange.minVariantPrice.amount).toFixed(2)} {product.node.priceRange.minVariantPrice.currencyCode}
+            ${parseFloat(selectedVariant?.price?.amount || product.node.priceRange.minVariantPrice.amount).toFixed(2)}{" "}
+            {selectedVariant?.price?.currencyCode || product.node.priceRange.minVariantPrice.currencyCode}
           </p>
 
           <div className="gold-divider mt-6 mb-6" />
 
           <p className="text-muted-foreground leading-relaxed text-sm">{product.node.description}</p>
 
+          {/* Variant selector */}
+          {options.length > 0 && variants.length > 0 && (
+            <div className="mt-6 space-y-3">
+              {options.map((option) => (
+                <div key={option.name}>
+                  <label className="text-xs tracking-[0.15em] uppercase text-muted-foreground font-medium mb-2 block">
+                    {option.name}: <span className="text-foreground">{selectedVariant?.selectedOptions?.find(o => o.name === option.name)?.value}</span>
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {variants.map((v, idx) => {
+                      const optValue = v.node.selectedOptions?.find(o => o.name === option.name)?.value;
+                      if (!optValue) return null;
+                      return (
+                        <button
+                          key={v.node.id}
+                          onClick={() => setSelectedVariantIdx(idx)}
+                          disabled={!v.node.availableForSale}
+                          className={`px-4 py-2 rounded border text-sm transition-all ${
+                            idx === selectedVariantIdx
+                              ? "border-gold bg-gold/10 text-gold-dark font-medium"
+                              : "border-border text-muted-foreground hover:border-gold/50"
+                          } ${!v.node.availableForSale ? "opacity-40 line-through cursor-not-allowed" : ""}`}
+                        >
+                          {optValue}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
           <button
             onClick={handleAddToCart}
-            disabled={isCartLoading || !variant?.availableForSale}
+            disabled={isCartLoading || !selectedVariant?.availableForSale}
             className="mt-8 w-full bg-gold-gradient text-primary-foreground py-3.5 rounded font-medium text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 shimmer hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             {isCartLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><ShoppingBag className="w-4 h-4" /> Añadir al Carrito</>}

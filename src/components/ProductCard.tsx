@@ -3,6 +3,7 @@ import type { ShopifyProduct } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import { ShoppingBag, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { useState, useRef } from "react";
 
 export function ProductCard({ product }: { product: ShopifyProduct }) {
   const addItem = useCartStore((s) => s.addItem);
@@ -10,6 +11,21 @@ export function ProductCard({ product }: { product: ShopifyProduct }) {
   const variant = product.node.variants.edges[0]?.node;
   const image = product.node.images.edges[0]?.node;
   const price = product.node.priceRange.minVariantPrice;
+
+  const [zoomStyle, setZoomStyle] = useState<React.CSSProperties>({});
+  const imgRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!imgRef.current) return;
+    const rect = imgRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomStyle({ transformOrigin: `${x}% ${y}%`, transform: "scale(1.8)" });
+  };
+
+  const handleMouseLeave = () => {
+    setZoomStyle({ transform: "scale(1)" });
+  };
 
   const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,16 +44,22 @@ export function ProductCard({ product }: { product: ShopifyProduct }) {
 
   return (
     <Link to="/producto/$handle" params={{ handle: product.node.handle }} className="group block">
-      <div className="relative aspect-square overflow-hidden rounded-lg bg-sand mb-4">
+      <div
+        ref={imgRef}
+        className="relative aspect-square overflow-hidden rounded-lg bg-sand mb-4 cursor-zoom-in"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         {image && (
           <img
             src={image.url}
             alt={image.altText || product.node.title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500"
+            style={zoomStyle}
             loading="lazy"
           />
         )}
-        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
+        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300 pointer-events-none" />
         <button
           onClick={handleAddToCart}
           disabled={isLoading || !variant?.availableForSale}
