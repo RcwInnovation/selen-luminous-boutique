@@ -7,9 +7,13 @@ import { Gem } from "lucide-react";
 export const Route = createFileRoute("/coleccion")({
   head: () => ({
     meta: [
-      { title: "Colección — SELEN Jewelry" },
-      { name: "description", content: "Descubre nuestra colección de joyería premium con esmeraldas y acabados en oro champagne." },
+      { title: "Colección de Joyería de Lujo — SELEN Jewelry Colombia" },
+      { name: "description", content: "Descubre la colección SELEN: joyería premium femenina en oro 18K con esmeraldas colombianas y diamantes. Anillos, collares, aretes y pulseras artesanales. Luxury jewelry, fine jewelry, emerald jewelry." },
+      { property: "og:title", content: "Colección de Alta Joyería — SELEN Jewelry" },
+      { property: "og:description", content: "Piezas únicas en oro con esmeraldas colombianas y diamantes. Joyería artesanal premium hecha en Colombia." },
+      { name: "keywords", content: "colección joyería lujo, luxury jewelry collection, joyas esmeraldas colombianas, gold jewelry, anillos oro, collares premium, fine jewelry Colombia" },
     ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/coleccion" }],
   }),
   component: ColeccionPage,
 });

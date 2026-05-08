@@ -4,8 +4,27 @@ import { ChevronRight } from "lucide-react";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Preguntas Frecuentes — SELEN Jewelry" },
-      { name: "description", content: "Respuestas sobre envíos, materiales, cuidado de joyas, cambios, devoluciones y certificados de SELEN Jewelry." },
+      { title: "Preguntas Frecuentes — SELEN Jewelry | Joyería Premium Colombia" },
+      { name: "description", content: "Respuestas sobre envíos nacionales e internacionales, materiales premium, joyería personalizada, cuidado de joyas en oro y esmeraldas, certificados y devoluciones. SELEN Jewelry Colombia." },
+      { property: "og:title", content: "FAQ — SELEN Jewelry Colombia" },
+      { property: "og:description", content: "Todo sobre envíos, materiales, joyería personalizada y certificados de autenticidad." },
+      { name: "keywords", content: "preguntas joyería, FAQ joyería lujo, envíos joyería Colombia, cuidado joyas oro, certificado autenticidad joyas" },
+    ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/faq" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            { "@type": "Question", name: "¿Las joyas incluyen certificado de autenticidad?", acceptedAnswer: { "@type": "Answer", text: "Sí, cada pieza de SELEN incluye un certificado premium de autenticidad y una guía de cuidado personalizada." } },
+            { "@type": "Question", name: "¿Realizan envíos internacionales?", acceptedAnswer: { "@type": "Answer", text: "Sí, enviamos a todo el mundo. Todos los envíos internacionales incluyen seguro y seguimiento completo." } },
+            { "@type": "Question", name: "¿Puedo personalizar una pieza?", acceptedAnswer: { "@type": "Answer", text: "Sí, creamos joyería personalizada sobre pedido: anillos, collares, aretes y pulseras en oro con esmeraldas y diamantes." } },
+            { "@type": "Question", name: "¿De qué materiales están hechas las joyas?", acceptedAnswer: { "@type": "Answer", text: "Nuestras piezas están elaboradas en oro de alta calidad con piedras naturales seleccionadas, incluyendo esmeraldas colombianas certificadas y diamantes." } },
+          ],
+        }),
+      },
     ],
   }),
   component: FAQPage,

@@ -9,9 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PoliticaEnviosRouteImport } from './routes/politica-envios'
 import { Route as NuestraHistoriaRouteImport } from './routes/nuestra-historia'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DisenosPersonalizadosRouteImport } from './routes/disenos-personalizados'
 import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as ColeccionRouteImport } from './routes/coleccion'
 import { Route as CertificadosRouteImport } from './routes/certificados'
@@ -19,6 +22,16 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductoHandleRouteImport } from './routes/producto.$handle'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoliticaEnviosRoute = PoliticaEnviosRouteImport.update({
   id: '/politica-envios',
   path: '/politica-envios',
@@ -32,6 +45,11 @@ const NuestraHistoriaRoute = NuestraHistoriaRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisenosPersonalizadosRoute = DisenosPersonalizadosRouteImport.update({
+  id: '/disenos-personalizados',
+  path: '/disenos-personalizados',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactoRoute = ContactoRouteImport.update({
@@ -71,9 +89,12 @@ export interface FileRoutesByFullPath {
   '/certificados': typeof CertificadosRoute
   '/coleccion': typeof ColeccionRoute
   '/contacto': typeof ContactoRoute
+  '/disenos-personalizados': typeof DisenosPersonalizadosRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
   '/politica-envios': typeof PoliticaEnviosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesByTo {
@@ -82,9 +103,12 @@ export interface FileRoutesByTo {
   '/certificados': typeof CertificadosRoute
   '/coleccion': typeof ColeccionRoute
   '/contacto': typeof ContactoRoute
+  '/disenos-personalizados': typeof DisenosPersonalizadosRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
   '/politica-envios': typeof PoliticaEnviosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRoutesById {
@@ -94,9 +118,12 @@ export interface FileRoutesById {
   '/certificados': typeof CertificadosRoute
   '/coleccion': typeof ColeccionRoute
   '/contacto': typeof ContactoRoute
+  '/disenos-personalizados': typeof DisenosPersonalizadosRoute
   '/faq': typeof FaqRoute
   '/nuestra-historia': typeof NuestraHistoriaRoute
   '/politica-envios': typeof PoliticaEnviosRoute
+  '/robots.txt': typeof RobotsDottxtRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/producto/$handle': typeof ProductoHandleRoute
 }
 export interface FileRouteTypes {
@@ -107,9 +134,12 @@ export interface FileRouteTypes {
     | '/certificados'
     | '/coleccion'
     | '/contacto'
+    | '/disenos-personalizados'
     | '/faq'
     | '/nuestra-historia'
     | '/politica-envios'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/producto/$handle'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -118,9 +148,12 @@ export interface FileRouteTypes {
     | '/certificados'
     | '/coleccion'
     | '/contacto'
+    | '/disenos-personalizados'
     | '/faq'
     | '/nuestra-historia'
     | '/politica-envios'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/producto/$handle'
   id:
     | '__root__'
@@ -129,9 +162,12 @@ export interface FileRouteTypes {
     | '/certificados'
     | '/coleccion'
     | '/contacto'
+    | '/disenos-personalizados'
     | '/faq'
     | '/nuestra-historia'
     | '/politica-envios'
+    | '/robots.txt'
+    | '/sitemap.xml'
     | '/producto/$handle'
   fileRoutesById: FileRoutesById
 }
@@ -141,14 +177,31 @@ export interface RootRouteChildren {
   CertificadosRoute: typeof CertificadosRoute
   ColeccionRoute: typeof ColeccionRoute
   ContactoRoute: typeof ContactoRoute
+  DisenosPersonalizadosRoute: typeof DisenosPersonalizadosRoute
   FaqRoute: typeof FaqRoute
   NuestraHistoriaRoute: typeof NuestraHistoriaRoute
   PoliticaEnviosRoute: typeof PoliticaEnviosRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProductoHandleRoute: typeof ProductoHandleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/politica-envios': {
       id: '/politica-envios'
       path: '/politica-envios'
@@ -168,6 +221,13 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disenos-personalizados': {
+      id: '/disenos-personalizados'
+      path: '/disenos-personalizados'
+      fullPath: '/disenos-personalizados'
+      preLoaderRoute: typeof DisenosPersonalizadosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contacto': {
@@ -221,9 +281,12 @@ const rootRouteChildren: RootRouteChildren = {
   CertificadosRoute: CertificadosRoute,
   ColeccionRoute: ColeccionRoute,
   ContactoRoute: ContactoRoute,
+  DisenosPersonalizadosRoute: DisenosPersonalizadosRoute,
   FaqRoute: FaqRoute,
   NuestraHistoriaRoute: NuestraHistoriaRoute,
   PoliticaEnviosRoute: PoliticaEnviosRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProductoHandleRoute: ProductoHandleRoute,
 }
 export const routeTree = rootRouteImport

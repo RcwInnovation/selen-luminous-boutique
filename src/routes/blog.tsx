@@ -4,9 +4,13 @@ import { Calendar } from "lucide-react";
 export const Route = createFileRoute("/blog")({
   head: () => ({
     meta: [
-      { title: "Blog — SELEN Jewelry" },
-      { name: "description", content: "Artículos sobre joyería, feminidad, regalos con significado, cuidado de piezas y estilo elegante." },
+      { title: "Blog de Joyería — SELEN Jewelry | Tendencias, Cuidado y Estilo" },
+      { name: "description", content: "Blog de joyería de lujo: artículos sobre tendencias en alta joyería, cuidado de piezas en oro y esmeraldas, estilo elegante femenino, significado de las gemas y guías de regalos premium." },
+      { property: "og:title", content: "Blog de Joyería — SELEN Jewelry" },
+      { property: "og:description", content: "Tendencias, cuidado de joyas, estilo elegante y guías de regalos en joyería de lujo." },
+      { name: "keywords", content: "blog joyería lujo, tendencias joyería, cuidado joyas oro, estilo joyería femenina, jewelry blog, luxury jewelry trends" },
     ],
+    links: [{ rel: "canonical", href: "https://selenjewelry.com/blog" }],
   }),
   component: BlogPage,
 });
