@@ -3,9 +3,73 @@ import { useQuery } from "@tanstack/react-query";
 import { storefrontApiRequest, STOREFRONT_PRODUCTS_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { ProductCard } from "@/components/ProductCard";
 import { HeroSlider } from "@/components/HeroSlider";
-import { Star, Shield, Gem, Heart, ChevronRight } from "lucide-react";
+import { Star, Shield, Gem, Heart, ChevronRight, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro | Colombia" },
+      { name: "description", content: "SELEN Jewelry: joyería femenina premium hecha en Colombia. Piezas únicas en oro 18K con esmeraldas colombianas y diamantes. Diseños personalizados, joyería sobre pedido. Envíos nacionales e internacionales." },
+      { property: "og:title", content: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro" },
+      { property: "og:description", content: "Joyería femenina premium con esmeraldas colombianas y oro. Diseños personalizados y piezas sobre pedido. Hecho en Colombia." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://selenjewelry.com" },
+      { name: "keywords", content: "joyería de lujo, luxury jewelry, joyería premium femenina, joyas con esmeraldas, emerald jewelry, gold jewelry, joyería personalizada, custom jewelry, fine jewelry, handcrafted jewelry, diamond jewelry, joyería exclusiva, alta joyería femenina, joyería Colombia, SELEN Jewelry" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://selenjewelry.com" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "JewelryStore",
+          name: "SELEN Jewelry",
+          url: "https://selenjewelry.com",
+          logo: "https://selenjewelry.com/icon-512.png",
+          description: "SELEN Jewelry es una marca colombiana de joyería femenina premium. Creamos piezas únicas artesanales en oro 18K con esmeraldas colombianas certificadas y diamantes. Ofrecemos joyería personalizada y diseños sobre pedido.",
+          address: { "@type": "PostalAddress", addressLocality: "Bogotá", addressRegion: "Cundinamarca", addressCountry: "CO" },
+          telephone: "+573001234567",
+          email: "contacto@selenjewelry.com",
+          priceRange: "$$$",
+          openingHours: "Mo-Fr 09:00-18:00, Sa 10:00-14:00",
+          sameAs: [],
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Colección SELEN Jewelry",
+            itemListElement: [
+              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Anillos de oro con esmeraldas", category: "Jewelry" } },
+              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Collares artesanales en oro", category: "Jewelry" } },
+              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Aretes con diamantes y esmeraldas", category: "Jewelry" } },
+              { "@type": "Offer", itemOffered: { "@type": "Product", name: "Pulseras de lujo en oro 18K", category: "Jewelry" } },
+            ],
+          },
+          makesOffer: {
+            "@type": "Offer",
+            name: "Joyería Personalizada",
+            description: "Diseño y creación de piezas únicas sobre pedido en oro, diamantes y esmeraldas colombianas.",
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "SELEN Jewelry",
+          url: "https://selenjewelry.com",
+          description: "Joyería femenina de lujo hecha en Colombia. Oro, esmeraldas y diamantes. Diseños personalizados.",
+          potentialAction: {
+            "@type": "SearchAction",
+            target: "https://selenjewelry.com/coleccion?q={search_term_string}",
+            "query-input": "required name=search_term_string",
+          },
+        }),
+      },
+    ],
+  }),
   component: HomePage,
 });
 
@@ -23,12 +87,23 @@ function HomePage() {
       {/* Hero Slider */}
       <HeroSlider />
 
+      {/* Shipping Banner */}
+      <section className="bg-foreground text-primary-foreground py-4">
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-3 text-center">
+          <Globe className="w-4 h-4 text-gold-light flex-shrink-0" />
+          <p className="text-xs sm:text-sm tracking-wide">
+            <strong className="text-gold-light">Envío a toda Colombia</strong> y envíos internacionales a cualquier parte del mundo · Empaque premium de regalo
+          </p>
+        </div>
+      </section>
+
       {/* Featured Products */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-12">
-          <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Exclusivo</p>
-          <h2 className="font-heading text-3xl sm:text-4xl font-light">Piezas Destacadas</h2>
+          <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Colección Exclusiva</p>
+          <h2 className="font-heading text-3xl sm:text-4xl font-light">Piezas Destacadas de Alta Joyería</h2>
           <div className="gold-divider mx-auto mt-4" />
+          <p className="text-muted-foreground mt-4 text-sm max-w-lg mx-auto">Joyería premium artesanal en oro con esmeraldas colombianas y diamantes certificados.</p>
         </div>
 
         {isLoading ? (
@@ -64,15 +139,33 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Custom Jewelry CTA */}
       <section className="bg-cream-gradient py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Exclusivo</p>
+          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-6">Joyería Personalizada Sobre Pedido</h2>
+          <div className="gold-divider mx-auto mb-8" />
+          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+            ¿Sueñas con una pieza única? En SELEN creamos joyería personalizada: anillos de compromiso, collares, aretes y pulseras en oro 18K con esmeraldas colombianas y diamantes. Cada diseño es una obra de arte artesanal creada exclusivamente para ti.
+          </p>
+          <Link
+            to="/disenos-personalizados"
+            className="inline-flex items-center gap-2 mt-8 bg-gold-gradient text-primary-foreground px-8 py-3 rounded text-sm tracking-[0.15em] uppercase shimmer hover:opacity-90 transition-opacity"
+          >
+            Crear mi pieza personalizada <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* Story Section */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Nuestra Esencia</p>
-          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-6">Nace de la luz más pura</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-6">Nace de la Luz Más Pura</h2>
           <div className="gold-divider mx-auto mb-8" />
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">
             Inspirada en Selene, símbolo de belleza, misterio y luz en la oscuridad, SELEN Jewelry nace del amor de una madre por su hija.
-            La marca representa esa energía femenina que guía, protege y brilla incluso en silencio.
+            La marca representa esa energía femenina que guía, protege y brilla incluso en silencio. Somos una casa de joyería colombiana que trabaja con oro, diamantes y esmeraldas de la más alta calidad.
           </p>
           <p className="text-muted-foreground leading-relaxed mt-4 max-w-2xl mx-auto italic font-heading text-lg">
             "Cada pieza de SELEN no es solo una joya... es un fragmento de luz convertido en oro."
@@ -90,17 +183,17 @@ function HomePage() {
       <section className="py-20 bg-foreground text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-gold-light mb-2">Colección Especial</p>
-          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-4">El Brillo de la Esmeralda</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-4">El Brillo de la Esmeralda Colombiana</h2>
           <div className="gold-divider mx-auto mb-8" />
           <p className="text-primary-foreground/70 max-w-2xl mx-auto mb-10">
-            La esmeralda, piedra de la sabiduría y el renacimiento, se encuentra con el oro champagne en una colección que celebra la fuerza y la delicadeza femenina.
+            La esmeralda colombiana, piedra de la sabiduría y el renacimiento, se encuentra con el oro en una colección que celebra la fuerza y la delicadeza femenina. Piezas únicas de alta joyería artesanal.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
             {[
-              { icon: Gem, label: "Esmeraldas Naturales" },
-              { icon: Shield, label: "Certificado Premium" },
-              { icon: Star, label: "Acabado Artesanal" },
-              { icon: Heart, label: "Diseño con Alma" },
+              { icon: Gem, label: "Esmeraldas Colombianas Naturales" },
+              { icon: Shield, label: "Certificado de Autenticidad" },
+              { icon: Star, label: "Acabado Artesanal Premium" },
+              { icon: Heart, label: "Diseño con Alma y Significado" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="text-center">
                 <div className="w-12 h-12 rounded-full border border-gold-light/30 flex items-center justify-center mx-auto mb-3">
@@ -117,21 +210,21 @@ function HomePage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Testimonios</p>
-          <h2 className="font-heading text-3xl sm:text-4xl font-light">Lo que dicen nuestras clientas</h2>
+          <h2 className="font-heading text-3xl sm:text-4xl font-light">Lo Que Dicen Nuestras Clientas</h2>
           <div className="gold-divider mx-auto mt-4" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { text: "La pieza más hermosa que he recibido. La calidad y el diseño superaron mis expectativas. SELEN es sinónimo de elegancia.", name: "María C." },
-            { text: "Regalé un collar Luna Esmeralda a mi madre y lloró de emoción. Cada detalle cuenta una historia. Simplemente perfecto.", name: "Valentina R." },
-            { text: "La joyería de SELEN tiene algo especial: te hace sentir única. El empaque, la pieza, todo es una experiencia premium.", name: "Isabella M." },
-          ].map(({ text, name }) => (
+            { text: "La pieza más hermosa que he recibido. La calidad y el diseño superaron mis expectativas. SELEN es sinónimo de elegancia y lujo.", name: "María C.", loc: "Bogotá" },
+            { text: "Pedí un anillo personalizado con esmeralda y el resultado fue espectacular. El proceso fue fácil y el resultado superó todo lo que imaginé.", name: "Valentina R.", loc: "Medellín" },
+            { text: "La joyería de SELEN tiene algo especial: te hace sentir única. El empaque, la pieza, la atención... todo es una experiencia premium.", name: "Isabella M.", loc: "Cali" },
+          ].map(({ text, name, loc }) => (
             <div key={name} className="bg-cream p-8 rounded-lg border border-border/30">
               <div className="flex gap-1 mb-4">
                 {[1, 2, 3, 4, 5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />)}
               </div>
               <p className="text-sm text-muted-foreground italic leading-relaxed">"{text}"</p>
-              <p className="mt-4 text-xs tracking-wider uppercase text-gold-dark font-medium">— {name}</p>
+              <p className="mt-4 text-xs tracking-wider uppercase text-gold-dark font-medium">— {name}, {loc}</p>
             </div>
           ))}
         </div>
@@ -140,9 +233,9 @@ function HomePage() {
       {/* Newsletter */}
       <section className="bg-sand py-16">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Exclusivo para ti</p>
-          <h2 className="font-heading text-2xl sm:text-3xl font-light mb-3">Únete a nuestra comunidad</h2>
-          <p className="text-sm text-muted-foreground mb-6">Recibe las últimas novedades, acceso anticipado a nuevas colecciones y ofertas exclusivas.</p>
+          <p className="text-xs tracking-[0.3em] uppercase text-gold-dark mb-2">Exclusivo para Ti</p>
+          <h2 className="font-heading text-2xl sm:text-3xl font-light mb-3">Únete a Nuestra Comunidad</h2>
+          <p className="text-sm text-muted-foreground mb-6">Recibe las últimas novedades en joyería de lujo, acceso anticipado a nuevas colecciones y ofertas exclusivas.</p>
           <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
@@ -165,8 +258,8 @@ function HomePage() {
         </div>
         {[
           { q: "¿Las joyas incluyen certificado de autenticidad?", a: "Sí, cada pieza de SELEN incluye un certificado premium de autenticidad y una guía de cuidado." },
-          { q: "¿Cuánto tarda el envío?", a: "Los envíos nacionales tardan de 3 a 5 días hábiles. Envíos internacionales de 7 a 14 días hábiles." },
-          { q: "¿Puedo hacer devoluciones?", a: "Aceptamos devoluciones dentro de los 15 días posteriores a la recepción, siempre que la pieza esté en su estado original." },
+          { q: "¿Realizan envíos a todo Colombia e internacionales?", a: "Sí, enviamos a cualquier ciudad de Colombia y realizamos envíos internacionales a todo el mundo con seguimiento y seguro incluido." },
+          { q: "¿Puedo solicitar una pieza personalizada?", a: "Absolutamente. Creamos joyería personalizada sobre pedido: anillos, collares, aretes y pulseras en oro con esmeraldas y diamantes. Contáctanos para iniciar tu diseño." },
         ].map(({ q, a }) => (
           <details key={q} className="group border-b border-border/50 py-4">
             <summary className="flex justify-between items-center cursor-pointer text-sm font-medium">
