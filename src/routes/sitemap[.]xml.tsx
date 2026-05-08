@@ -16,32 +16,32 @@ const staticRoutes = [
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
-    GET: async () => {
-      const now = new Date().toISOString().split("T")[0];
-      const urls = staticRoutes
-        .map(
-          (r) => `  <url>
+    handlers: {
+      GET: async () => {
+        const now = new Date().toISOString().split("T")[0];
+        const urls = staticRoutes
+          .map(
+            (r) => `  <url>
     <loc>${SITE_URL}${r.path}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>${r.changefreq}</changefreq>
     <priority>${r.priority}</priority>
   </url>`
-        )
-        .join("\n");
+          )
+          .join("\n");
 
-      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}
 </urlset>`;
 
-      return new Response(sitemap, {
-        headers: {
-          "Content-Type": "application/xml",
-          "Cache-Control": "public, max-age=3600, s-maxage=86400",
-        },
-      });
+        return new Response(sitemap, {
+          headers: {
+            "Content-Type": "application/xml",
+            "Cache-Control": "public, max-age=3600, s-maxage=86400",
+          },
+        });
+      },
     },
   },
 });

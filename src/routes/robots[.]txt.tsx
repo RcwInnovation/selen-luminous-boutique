@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/robots.txt")({
   server: {
-    GET: async () => {
-      const robots = `User-agent: *
+    handlers: {
+      GET: async () => {
+        const robots = `User-agent: *
 Allow: /
 
 Sitemap: https://selenjewelry.com/sitemap.xml
@@ -29,9 +30,10 @@ Allow: /
 User-agent: Bytespider
 Disallow:
 `;
-      return new Response(robots, {
-        headers: { "Content-Type": "text/plain", "Cache-Control": "public, max-age=86400" },
-      });
+        return new Response(robots, {
+          headers: { "Content-Type": "text/plain", "Cache-Control": "public, max-age=86400" },
+        });
+      },
     },
   },
 });
