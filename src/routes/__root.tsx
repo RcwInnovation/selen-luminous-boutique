@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
+import { LogoIntro } from "@/components/LogoIntro";
 import { useCartSync } from "@/hooks/useCartSync";
 import appCss from "../styles.css?url";
 
@@ -49,16 +50,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "SELEN Jewelry — Fragmentos de Luz Convertidos en Oro" },
-      { name: "description", content: "Joyería femenina premium inspirada en Selene. Piezas únicas bañadas en oro con esmeraldas. Elegancia, misterio y luz." },
+      { name: "description", content: "Joyería femenina premium inspirada en Selene. Piezas únicas bañadas en oro con esmeraldas. Elegancia, misterio y luz. Hecho en Colombia." },
       { property: "og:title", content: "SELEN Jewelry — Fragmentos de Luz Convertidos en Oro" },
       { property: "og:description", content: "Joyería femenina premium inspirada en Selene. Piezas únicas bañadas en oro con esmeraldas." },
       { property: "og:type", content: "website" },
+      { name: "theme-color", content: "#1a1408" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "manifest", href: "/manifest.json" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -87,6 +93,7 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <LogoIntro />
       <Header onCartOpen={() => setCartOpen(true)} />
       <main className="flex-1">
         <Outlet />
