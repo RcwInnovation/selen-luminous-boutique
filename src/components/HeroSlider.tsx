@@ -1,24 +1,24 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
-import heroSlide2 from "@/assets/hero-slide-2.jpg";
+import heroSlide1Asset from "@/assets/hero-slide-1.jpg.asset.json";
+import heroSlide2Asset from "@/assets/hero-slide-2-new.jpg.asset.json";
 import heroSlide3 from "@/assets/hero-slide-3.jpg";
 
 const slides = [
   {
-    image: heroBg,
+    image: heroSlide1Asset.url,
     subtitle: "SELEN Jewelry",
     title: "Fragmentos de luz\nconvertidos en oro",
     description: "Cada pieza de SELEN es un tributo a la energía femenina que guía, protege y brilla incluso en silencio.",
     cta: "Descubrir la colección",
   },
   {
-    image: heroSlide2,
-    subtitle: "Colección Esmeralda",
-    title: "El brillo eterno\nde la naturaleza",
-    description: "Esmeraldas naturales engarzadas en oro champagne. Piezas que cuentan historias de elegancia y poder.",
-    cta: "Ver anillos",
+    image: heroSlide2Asset.url,
+    subtitle: "Elegancia Cotidiana",
+    title: "Joyas que iluminan\ncada momento",
+    description: "Piezas delicadas en oro y esmeralda diseñadas para acompañarte en cada instante con sofisticación natural.",
+    cta: "Ver colección",
   },
   {
     image: heroSlide3,
