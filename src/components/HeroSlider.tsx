@@ -59,7 +59,7 @@ export function HeroSlider() {
   }, [next]);
 
   return (
-    <section className="relative h-[88vh] min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-end lg:items-center overflow-hidden -mt-16 sm:-mt-20 lg:-mt-24">
+    <section className="relative h-[88vh] min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-end overflow-hidden -mt-16 sm:-mt-20 lg:-mt-24">
       {slides.map((slide, i) => (
         <img
           key={i}
