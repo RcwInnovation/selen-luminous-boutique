@@ -13,7 +13,7 @@ const slides = [
     titleAccent: "convertidos en oro",
     description:
       "Joyas en oro de 18K con esmeraldas colombianas. Cada pieza lleva la calidez del abrazo materno.",
-    objectPosition: "object-[55%_center] sm:object-[60%_center] lg:object-center",
+    objectPosition: "object-[30%_center] sm:object-[40%_center] lg:object-center",
   },
   {
     image: heroSlide2Asset.url,
