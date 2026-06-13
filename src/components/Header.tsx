@@ -12,13 +12,19 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-const navLinks = [
-  { to: "/" as const, label: "Inicio" },
+const leftLinks = [
   { to: "/coleccion" as const, label: "Colección" },
   { to: "/disenos-personalizados" as const, label: "Personalizados" },
+];
+const rightLinks = [
   { to: "/nuestra-historia" as const, label: "Nuestra Historia" },
-  { to: "/blog" as const, label: "Blog" },
   { to: "/contacto" as const, label: "Contacto" },
+];
+const mobileLinks = [
+  { to: "/" as const, label: "Inicio" },
+  ...leftLinks,
+  ...rightLinks,
+  { to: "/blog" as const, label: "Blog" },
 ];
 
 export function Header({ onCartOpen }: { onCartOpen: () => void }) {
@@ -36,81 +42,106 @@ export function Header({ onCartOpen }: { onCartOpen: () => void }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // On home, overlay over the hero (transparent until scroll). Other routes: solid sticky.
   const overlay = isHome && !mobileOpen;
+  // Glassmorphism: ultra-translucent + backdrop blur in both overlay and sticky states.
   const headerClass = overlay
-    ? `fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border/50" : "bg-transparent"
+    ? `fixed top-0 left-0 right-0 z-50 transition-colors duration-500 backdrop-blur-md ${
+        scrolled
+          ? "bg-background/70 border-b border-border/40"
+          : "bg-white/5 border-b border-white/10"
       }`
-    : "sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50";
+    : "sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40";
 
   const onDark = overlay && !scrolled;
-  const linkColor = onDark ? "text-primary-foreground/80 hover:text-gold-light" : "text-muted-foreground hover:text-gold";
+  const linkColor = onDark ? "text-primary-foreground/85 hover:text-gold-light" : "text-muted-foreground hover:text-gold";
   const activeColor = onDark ? "text-gold-light font-semibold" : "text-gold font-semibold";
   const iconColor = onDark ? "text-primary-foreground hover:text-gold-light" : "text-foreground hover:text-gold";
+
+  const renderNavLink = ({ to, label }: { to: string; label: string }) => (
+    <Link
+      key={to}
+      to={to as never}
+      className={`text-[11px] xl:text-xs tracking-[0.22em] uppercase transition-colors ${
+        location.pathname === to ? activeColor : linkColor
+      }`}
+    >
+      {label}
+    </Link>
+  );
 
   return (
     <header className={headerClass}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-[auto_1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center gap-4 h-16 sm:h-20 lg:h-24">
-          {/* Left: mobile menu + logo */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden ${iconColor}`}
-              aria-label="Menú"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-            <Link to="/" className="flex-shrink-0 block">
-              <img
-                src={logoSelen}
-                alt="SELEN Jewelry"
-                className={`h-14 sm:h-16 lg:h-20 w-auto transition-all duration-500 ${
-                  onDark ? "drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]" : ""
-                }`}
-              />
-            </Link>
-          </div>
-
-          {/* Center: Desktop Nav */}
-          <nav className="hidden lg:flex justify-center gap-7 xl:gap-9">
-            {navLinks.map(({ to, label }) => (
-              <Link
-                key={to}
-                to={to}
-                className={`text-xs tracking-[0.22em] uppercase transition-colors ${
-                  location.pathname === to ? activeColor : linkColor
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
+        {/* Desktop: left links | logo | right links | utilities */}
+        <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center gap-6 h-24">
+          {/* Left: nav commercial */}
+          <nav className="flex justify-end gap-8 xl:gap-10 pr-4">
+            {leftLinks.map(renderNavLink)}
           </nav>
 
-          {/* Right: socials (desktop) + cart */}
-          <div className="flex items-center gap-3 sm:gap-4 justify-end">
-            <div className="hidden lg:flex items-center gap-3 mr-2">
+          {/* Center: logo */}
+          <Link to="/" className="flex-shrink-0 block justify-self-center" aria-label="SELEN Jewelry — Inicio">
+            <img
+              src={logoSelen}
+              alt="SELEN Jewelry"
+              className={`h-24 xl:h-28 w-auto transition-all duration-500 ${
+                onDark ? "drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]" : ""
+              }`}
+            />
+          </Link>
+
+          {/* Right: nav institutional + utilities */}
+          <div className="flex items-center justify-start gap-8 xl:gap-10 pl-4">
+            <nav className="flex gap-8 xl:gap-10">
+              {rightLinks.map(renderNavLink)}
+            </nav>
+            <div className="flex items-center gap-3 ml-auto">
               <a href="#" className={linkColor} aria-label="Instagram"><Instagram className="w-4 h-4" /></a>
               <a href="#" className={linkColor} aria-label="Facebook"><Facebook className="w-4 h-4" /></a>
               <a href="#" className={linkColor} aria-label="TikTok"><TikTokIcon className="w-4 h-4" /></a>
+              <button onClick={onCartOpen} className={`relative ml-2 ${iconColor}`} aria-label="Carrito">
+                <ShoppingBag className="w-5 h-5" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-gold text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
             </div>
-            <button onClick={onCartOpen} className={`relative ${iconColor}`} aria-label="Carrito">
-              <ShoppingBag className="w-5 h-5" />
-              {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-gold text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
-                  {totalItems}
-                </span>
-              )}
-            </button>
           </div>
+        </div>
+
+        {/* Mobile / Tablet header */}
+        <div className="lg:hidden grid grid-cols-[auto_1fr_auto] items-center gap-3 h-16 sm:h-20">
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className={iconColor}
+            aria-label="Menú"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+          <Link to="/" className="flex justify-center" aria-label="SELEN Jewelry — Inicio">
+            <img
+              src={logoSelen}
+              alt="SELEN Jewelry"
+              className={`h-14 sm:h-16 w-auto ${onDark ? "drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]" : ""}`}
+            />
+          </Link>
+          <button onClick={onCartOpen} className={`relative ${iconColor}`} aria-label="Carrito">
+            <ShoppingBag className="w-5 h-5" />
+            {totalItems > 0 && (
+              <span className="absolute -top-2 -right-2 bg-gold text-primary-foreground text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
+                {totalItems}
+              </span>
+            )}
+          </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
       {mobileOpen && (
         <nav className="lg:hidden bg-background border-t border-border/50 px-4 py-4 space-y-3">
-          {navLinks.map(({ to, label }) => (
+          {mobileLinks.map(({ to, label }) => (
             <Link
               key={to}
               to={to}
