@@ -12,7 +12,8 @@ const slides = [
     title: "Fragmentos de luz",
     titleAccent: "convertidos en oro",
     description:
-      "Joyas en oro de 18K con esmeraldas colombianas. Cada pieza lleva la calidez del abrazo materno — un fragmento de luz convertido en oro.",
+      "Joyas en oro de 18K con esmeraldas colombianas. Cada pieza lleva la calidez del abrazo materno.",
+    objectPosition: "object-[55%_center] sm:object-[60%_center] lg:object-center",
   },
   {
     image: heroSlide2Asset.url,
@@ -21,6 +22,7 @@ const slides = [
     titleAccent: "cada momento",
     description:
       "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
+    objectPosition: "object-[35%_center] sm:object-center",
   },
   {
     image: heroSlide3,
@@ -29,8 +31,10 @@ const slides = [
     titleAccent: "premium",
     description:
       "Cada joya es creada a mano con los más altos estándares de calidad.",
+    objectPosition: "object-center",
   },
 ];
+
 
 export function HeroSlider() {
   const [current, setCurrent] = useState(0);
