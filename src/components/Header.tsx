@@ -43,14 +43,13 @@ export function Header({ onCartOpen }: { onCartOpen: () => void }) {
   }, []);
 
   const overlay = isHome && !mobileOpen;
-  // Glassmorphism: ultra-translucent + backdrop blur in both overlay and sticky states.
   const headerClass = overlay
-    ? `fixed top-0 left-0 right-0 z-50 transition-colors duration-500 backdrop-blur-md ${
+    ? `fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ${
         scrolled
-          ? "bg-background/70 border-b border-border/40"
-          : "bg-white/5 border-b border-white/10"
+          ? "bg-background border-b border-border/40"
+          : "bg-transparent"
       }`
-    : "sticky top-0 z-50 backdrop-blur-md bg-background/70 border-b border-border/40";
+    : "sticky top-0 z-50 bg-background border-b border-border/40";
 
   const onDark = overlay && !scrolled;
   const linkColor = onDark ? "text-primary-foreground/85 hover:text-gold-light" : "text-muted-foreground hover:text-gold";
