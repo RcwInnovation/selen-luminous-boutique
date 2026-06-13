@@ -59,7 +59,7 @@ export function HeroSlider() {
   }, [next]);
 
   return (
-    <section className="relative h-[88vh] min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-end lg:items-center overflow-hidden -mt-16 sm:-mt-20 lg:-mt-24">
+    <section className="relative h-[88vh] min-h-[560px] sm:min-h-[640px] lg:min-h-[720px] flex items-end overflow-hidden -mt-16 sm:-mt-20 lg:-mt-24">
       {slides.map((slide, i) => (
         <img
           key={i}
@@ -73,7 +73,7 @@ export function HeroSlider() {
       {/* Soft gradient — concentrated at bottom on mobile, balanced on desktop so center copy reads */}
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-foreground/5 lg:bg-gradient-to-b lg:from-foreground/20 lg:via-foreground/30 lg:to-foreground/50" />
 
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-5 sm:px-8 lg:px-12 pb-6 sm:pb-8 lg:pb-0 lg:pt-16">
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-5 sm:px-8 lg:px-12 pb-10 sm:pb-14 lg:pb-20">
         <div className="text-center mx-auto">
           <p
             key={`sub-${current}`}
