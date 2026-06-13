@@ -11,24 +11,24 @@ const slides = [
     subtitle: "SELEN Jewelry",
     title: "Fragmentos de luz",
     titleAccent: "convertidos en oro",
-    description: "Cada pieza es un tributo a la energía femenina que guía, protege y brilla incluso en silencio.",
-    cta: "Descubrir la colección",
+    description:
+      "Joyas en oro de 18K con esmeraldas colombianas. Cada pieza lleva la calidez del abrazo materno — un fragmento de luz convertido en oro.",
   },
   {
     image: heroSlide2Asset.url,
     subtitle: "Elegancia Cotidiana",
     title: "Joyas que iluminan",
     titleAccent: "cada momento",
-    description: "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
-    cta: "Ver colección",
+    description:
+      "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
   },
   {
     image: heroSlide3,
     subtitle: "Hecho en Colombia",
     title: "Artesanía",
     titleAccent: "premium",
-    description: "Cada joya es creada a mano con los más altos estándares de calidad.",
-    cta: "Explorar colección",
+    description:
+      "Cada joya es creada a mano con los más altos estándares de calidad.",
   },
 ];
 
