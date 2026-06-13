@@ -12,9 +12,9 @@ import model4 from "@/assets/model-4.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro | Colombia" },
-      { name: "description", content: "SELEN Jewelry: joyería femenina premium hecha en Colombia. Piezas únicas en oro 18K con esmeraldas colombianas y diamantes. Diseños personalizados, joyería sobre pedido. Envíos nacionales e internacionales." },
-      { property: "og:title", content: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro" },
+      { title: "SELEN Jewelry | Alta Joyería y Esmeraldas Colombianas de Lujo" },
+      { name: "description", content: "Alta joyería en oro de 18k y esmeraldas colombianas auténticas con certificación. Diseños exclusivos con envío nacional e internacional. Entre aquí." },
+      { property: "og:title", content: "SELEN Jewelry | Alta Joyería y Esmeraldas Colombianas de Lujo" },
       { property: "og:description", content: "Joyería femenina premium con esmeraldas colombianas y oro. Diseños personalizados y piezas sobre pedido. Hecho en Colombia." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://selenjewelry.com" },
