@@ -11,24 +11,24 @@ const slides = [
     subtitle: "SELEN Jewelry",
     title: "Fragmentos de luz",
     titleAccent: "convertidos en oro",
-    description: "Cada pieza es un tributo a la energía femenina que guía, protege y brilla incluso en silencio.",
-    cta: "Descubrir la colección",
+    description:
+      "Joyas en oro de 18K con esmeraldas colombianas. Cada pieza lleva la calidez del abrazo materno — un fragmento de luz convertido en oro.",
   },
   {
     image: heroSlide2Asset.url,
     subtitle: "Elegancia Cotidiana",
     title: "Joyas que iluminan",
     titleAccent: "cada momento",
-    description: "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
-    cta: "Ver colección",
+    description:
+      "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
   },
   {
     image: heroSlide3,
     subtitle: "Hecho en Colombia",
     title: "Artesanía",
     titleAccent: "premium",
-    description: "Cada joya es creada a mano con los más altos estándares de calidad.",
-    cta: "Explorar colección",
+    description:
+      "Cada joya es creada a mano con los más altos estándares de calidad.",
   },
 ];
 
@@ -66,37 +66,47 @@ export function HeroSlider() {
           }`}
         />
       ))}
-      {/* Soft gradient: stronger at bottom on mobile, left on desktop */}
-      <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/30 to-transparent lg:bg-gradient-to-r lg:from-foreground/70 lg:via-foreground/25 lg:to-transparent" />
+      {/* Soft gradient — concentrated at bottom on mobile, balanced on desktop so center copy reads */}
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/35 to-foreground/10 lg:bg-gradient-to-b lg:from-foreground/25 lg:via-foreground/35 lg:to-foreground/55" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-10 sm:pb-14 lg:pb-0 lg:pt-28">
-        <div className="max-w-xl text-left">
+      <div className="relative z-10 w-full max-w-3xl mx-auto px-5 sm:px-8 lg:px-12 pb-10 sm:pb-14 lg:pb-0 lg:pt-20">
+        <div className="text-center mx-auto">
           <p
             key={`sub-${current}`}
-            className="text-primary-foreground/85 text-[10px] sm:text-xs tracking-[0.3em] uppercase mb-3 sm:mb-4 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
+            className="text-gold-light text-[10px] sm:text-xs tracking-[0.32em] uppercase mb-3 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
           >
             {slides[current].subtitle}
           </p>
           <h1
             key={`title-${current}`}
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-primary-foreground leading-[1.1] tracking-tight animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-light text-primary-foreground leading-[1.05] tracking-tight animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
           >
             <span className="block">{slides[current].title}</span>
             <span className="block italic text-gold-light/95">{slides[current].titleAccent}</span>
           </h1>
           <p
             key={`desc-${current}`}
-            className="text-primary-foreground/85 mt-4 sm:mt-5 text-sm sm:text-base leading-relaxed max-w-md animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
+            className="text-primary-foreground/90 mt-4 text-sm sm:text-base leading-relaxed max-w-xl mx-auto animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
           >
             {slides[current].description}
           </p>
-          <Link
+          <div
             key={`cta-${current}`}
-            to="/coleccion"
-            className="inline-flex items-center gap-2 mt-6 sm:mt-8 bg-gold-gradient text-primary-foreground px-6 sm:px-8 py-3 sm:py-3.5 rounded text-xs sm:text-sm tracking-[0.15em] uppercase font-medium shimmer hover:opacity-90 transition-opacity animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
+            className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3 animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
           >
-            {slides[current].cta} <ChevronRight className="w-4 h-4" />
-          </Link>
+            <Link
+              to="/coleccion"
+              className="inline-flex items-center justify-center bg-gold-gradient text-primary-foreground px-7 py-2.5 rounded-sm text-[11px] sm:text-xs tracking-[0.22em] uppercase font-medium shimmer hover:opacity-90 transition-opacity min-w-[170px]"
+            >
+              Ver colección
+            </Link>
+            <Link
+              to="/nuestra-historia"
+              className="inline-flex items-center justify-center bg-foreground/85 hover:bg-foreground text-primary-foreground px-7 py-2.5 rounded-sm text-[11px] sm:text-xs tracking-[0.22em] uppercase font-medium border border-primary-foreground/15 transition-colors min-w-[170px]"
+            >
+              Nuestra historia
+            </Link>
+          </div>
         </div>
       </div>
 

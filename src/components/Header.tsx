@@ -2,7 +2,7 @@ import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ShoppingBag, Menu, X, Instagram, Facebook } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
-import logoSelen from "@/assets/logo-selen.png";
+import logoSelen from "@/assets/logo-selen-clean.png";
 
 function TikTokIcon({ className }: { className?: string }) {
   return (

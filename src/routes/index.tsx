@@ -92,11 +92,13 @@ function HomePage() {
       <HeroSlider />
 
       {/* Shipping Banner */}
-      <section className="bg-foreground text-primary-foreground py-4">
+      <section className="bg-foreground text-primary-foreground py-3">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-center gap-3 text-center">
           <Globe className="w-4 h-4 text-gold-light flex-shrink-0" />
-          <p className="text-xs sm:text-sm tracking-wide">
-            <strong className="text-gold-light">Envío a toda Colombia</strong> y envíos internacionales a cualquier parte del mundo · Empaque premium de regalo
+          <p className="text-[11px] sm:text-xs tracking-[0.12em]">
+            <strong className="text-gold-light font-medium">Entrega inmediata</strong> en referencias seleccionadas
+            <span className="opacity-60 mx-2">·</span>
+            <span className="text-primary-foreground/90">Envíos nacionales e internacionales</span>
           </p>
         </div>
       </section>
