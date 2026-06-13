@@ -1,24 +1,24 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
-import heroSlide2 from "@/assets/hero-slide-2.jpg";
+import heroSlide1Asset from "@/assets/hero-slide-1.jpg.asset.json";
+import heroSlide2Asset from "@/assets/hero-slide-2-new.jpg.asset.json";
 import heroSlide3 from "@/assets/hero-slide-3.jpg";
 
 const slides = [
   {
-    image: heroBg,
+    image: heroSlide1Asset.url,
     subtitle: "SELEN Jewelry",
     title: "Fragmentos de luz\nconvertidos en oro",
     description: "Cada pieza de SELEN es un tributo a la energía femenina que guía, protege y brilla incluso en silencio.",
     cta: "Descubrir la colección",
   },
   {
-    image: heroSlide2,
-    subtitle: "Colección Esmeralda",
-    title: "El brillo eterno\nde la naturaleza",
-    description: "Esmeraldas naturales engarzadas en oro champagne. Piezas que cuentan historias de elegancia y poder.",
-    cta: "Ver anillos",
+    image: heroSlide2Asset.url,
+    subtitle: "Elegancia Cotidiana",
+    title: "Joyas que iluminan\ncada momento",
+    description: "Piezas delicadas en oro y esmeralda diseñadas para acompañarte en cada instante con sofisticación natural.",
+    cta: "Ver colección",
   },
   {
     image: heroSlide3,
@@ -58,34 +58,36 @@ export function HeroSlider() {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === current ? "opacity-100" : "opacity-0"}`}
         />
       ))}
-      <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-foreground/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 via-foreground/30 to-transparent" />
 
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
-        <p
-          key={`sub-${current}`}
-          className="text-primary-foreground/80 text-xs tracking-[0.3em] uppercase mb-4 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
-        >
-          {slides[current].subtitle}
-        </p>
-        <h1
-          key={`title-${current}`}
-          className="font-heading text-4xl sm:text-5xl md:text-7xl font-light text-primary-foreground leading-tight whitespace-pre-line animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
-        >
-          {slides[current].title}
-        </h1>
-        <p
-          key={`desc-${current}`}
-          className="text-primary-foreground/70 mt-6 text-sm sm:text-base max-w-lg mx-auto animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
-        >
-          {slides[current].description}
-        </p>
-        <Link
-          key={`cta-${current}`}
-          to="/coleccion"
-          className="inline-flex items-center gap-2 mt-8 bg-gold-gradient text-primary-foreground px-8 py-3.5 rounded text-sm tracking-[0.15em] uppercase font-medium shimmer hover:opacity-90 transition-opacity animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
-        >
-          {slides[current].cta} <ChevronRight className="w-4 h-4" />
-        </Link>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="max-w-xl text-left">
+          <p
+            key={`sub-${current}`}
+            className="text-primary-foreground/80 text-xs tracking-[0.3em] uppercase mb-4 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
+          >
+            {slides[current].subtitle}
+          </p>
+          <h1
+            key={`title-${current}`}
+            className="font-heading text-4xl sm:text-5xl md:text-6xl font-light text-primary-foreground leading-tight whitespace-pre-line animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
+          >
+            {slides[current].title}
+          </h1>
+          <p
+            key={`desc-${current}`}
+            className="text-primary-foreground/80 mt-6 text-sm sm:text-base max-w-md animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
+          >
+            {slides[current].description}
+          </p>
+          <Link
+            key={`cta-${current}`}
+            to="/coleccion"
+            className="inline-flex items-center gap-2 mt-8 bg-gold-gradient text-primary-foreground px-8 py-3.5 rounded text-sm tracking-[0.15em] uppercase font-medium shimmer hover:opacity-90 transition-opacity animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
+          >
+            {slides[current].cta} <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
       </div>
 
       {/* Navigation arrows */}
