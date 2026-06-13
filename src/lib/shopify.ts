@@ -99,7 +99,15 @@ export const STOREFRONT_PRODUCTS_QUERY = `
           title
           description
           handle
+          productType
+          tags
           priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          compareAtPriceRange {
             minVariantPrice {
               amount
               currencyCode
@@ -119,6 +127,10 @@ export const STOREFRONT_PRODUCTS_QUERY = `
                 id
                 title
                 price {
+                  amount
+                  currencyCode
+                }
+                compareAtPrice {
                   amount
                   currencyCode
                 }
