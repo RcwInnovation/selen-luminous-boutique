@@ -73,40 +73,40 @@ export function HeroSlider() {
       {/* Soft gradient — concentrated at bottom on mobile, balanced on desktop so center copy reads */}
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-foreground/5 lg:bg-gradient-to-b lg:from-foreground/20 lg:via-foreground/30 lg:to-foreground/50" />
 
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-5 sm:px-8 lg:px-12 pb-10 sm:pb-14 lg:pb-20">
-        <div className="text-center mx-auto">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-10 sm:pb-14 lg:pb-20">
+        <div className="text-left max-w-2xl">
           <p
             key={`sub-${current}`}
-            className="text-gold-light text-[10px] sm:text-xs tracking-[0.32em] uppercase mb-2 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
+            className="text-gold-light text-[10px] sm:text-xs lg:text-sm tracking-[0.32em] uppercase mb-2 lg:mb-4 animate-[fadeSlideUp_0.6s_ease-out_forwards]"
           >
             {slides[current].subtitle}
           </p>
           <h1
             key={`title-${current}`}
-            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-primary-foreground leading-[1.05] tracking-tight animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
+            className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-light text-primary-foreground leading-[1.05] tracking-tight animate-[fadeSlideUp_0.6s_ease-out_0.15s_both]"
           >
             <span className="block">{slides[current].title}</span>
             <span className="block italic text-gold-light/95">{slides[current].titleAccent}</span>
           </h1>
           <p
             key={`desc-${current}`}
-            className="text-primary-foreground/90 mt-2.5 text-xs sm:text-sm leading-snug max-w-md mx-auto animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
+            className="text-primary-foreground/90 mt-2.5 lg:mt-5 text-xs sm:text-sm lg:text-base leading-snug lg:leading-relaxed max-w-md lg:max-w-lg animate-[fadeSlideUp_0.6s_ease-out_0.3s_both]"
           >
             {slides[current].description}
           </p>
           <div
             key={`cta-${current}`}
-            className="mt-4 sm:mt-5 flex flex-wrap items-center justify-center gap-2.5 animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
+            className="mt-4 sm:mt-5 lg:mt-8 flex flex-wrap items-center justify-start gap-2.5 lg:gap-4 animate-[fadeSlideUp_0.6s_ease-out_0.45s_both]"
           >
             <Link
               to="/coleccion"
-              className="inline-flex items-center justify-center bg-gold-gradient text-primary-foreground px-6 py-2 rounded-sm text-[11px] sm:text-xs tracking-[0.22em] uppercase font-medium shimmer hover:opacity-90 transition-opacity min-w-[150px]"
+              className="inline-flex items-center justify-center bg-gold-gradient text-primary-foreground px-6 lg:px-8 py-2 lg:py-3 rounded-sm text-[11px] sm:text-xs lg:text-sm tracking-[0.22em] uppercase font-medium shimmer hover:opacity-90 transition-opacity min-w-[150px]"
             >
               Ver colección
             </Link>
             <Link
               to="/nuestra-historia"
-              className="inline-flex items-center justify-center bg-foreground/85 hover:bg-foreground text-primary-foreground px-6 py-2 rounded-sm text-[11px] sm:text-xs tracking-[0.22em] uppercase font-medium border border-primary-foreground/15 transition-colors min-w-[150px]"
+              className="inline-flex items-center justify-center bg-foreground/85 hover:bg-foreground text-primary-foreground px-6 lg:px-8 py-2 lg:py-3 rounded-sm text-[11px] sm:text-xs lg:text-sm tracking-[0.22em] uppercase font-medium border border-primary-foreground/15 transition-colors min-w-[150px]"
             >
               Nuestra historia
             </Link>
