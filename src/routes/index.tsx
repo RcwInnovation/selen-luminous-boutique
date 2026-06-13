@@ -12,9 +12,9 @@ import model4 from "@/assets/model-4.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro | Colombia" },
-      { name: "description", content: "SELEN Jewelry: joyería femenina premium hecha en Colombia. Piezas únicas en oro 18K con esmeraldas colombianas y diamantes. Diseños personalizados, joyería sobre pedido. Envíos nacionales e internacionales." },
-      { property: "og:title", content: "SELEN Jewelry — Joyería de Lujo con Esmeraldas y Oro" },
+      { title: "SELEN Jewelry | Alta Joyería y Esmeraldas Colombianas de Lujo" },
+      { name: "description", content: "Alta joyería en oro de 18k y esmeraldas colombianas auténticas con certificación. Diseños exclusivos con envío nacional e internacional. Entre aquí." },
+      { property: "og:title", content: "SELEN Jewelry | Alta Joyería y Esmeraldas Colombianas de Lujo" },
       { property: "og:description", content: "Joyería femenina premium con esmeraldas colombianas y oro. Diseños personalizados y piezas sobre pedido. Hecho en Colombia." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://selenjewelry.com" },
@@ -115,10 +115,10 @@ function HomePage() {
         {/* Editorial model gallery — desktop only, borderless */}
         <div className="hidden lg:grid grid-cols-4 gap-0 mb-16 -mx-4 sm:-mx-6 lg:-mx-8">
           {[
-            { src: model1, alt: "Collar delicado de oro 18K con dije de esmeralda colombiana SELEN" },
-            { src: model2, alt: "Pulsera de bebé en oro y pulsera de mamá — joyería delicada SELEN" },
-            { src: model3, alt: "Arete argolla de oro con esmeralda colombiana SELEN" },
-            { src: model4, alt: "Pulsera de bebé en oro 18K con dije corazón — joyería infantil SELEN" },
+            { src: model1, alt: "Dije de esmeralda colombiana con halo de diamantes en oro 18K — SELEN" },
+            { src: model2, alt: "Anillo de cóctel con esmeralda colombiana corte cojín y diamantes en oro 18K — SELEN" },
+            { src: model3, alt: "Arete topo de esmeralda colombiana verde vibrante en oro — SELEN" },
+            { src: model4, alt: "Pulsera de eslabones en oro 18K con esmeraldas y diamantes — SELEN" },
           ].map((img) => (
             <div key={img.alt} className="relative aspect-[4/5] overflow-hidden group">
               <img

@@ -26,11 +26,12 @@ export function Footer() {
               📱 +57 321 8891493
             </p>
             <div className="flex gap-4 mt-5">
-              <a href="#" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="Instagram"><Instagram className="w-4 h-4" /></a>
-              <a href="#" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="Facebook"><Facebook className="w-4 h-4" /></a>
-              <a href="#" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="TikTok"><TikTokIcon className="w-4 h-4" /></a>
+              <a href="https://instagram.com/selenjewelry" target="_blank" rel="noopener noreferrer" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="Instagram @selenjewelry"><Instagram className="w-4 h-4" /></a>
+              <a href="https://facebook.com/selenjewelry" target="_blank" rel="noopener noreferrer" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="Facebook @selenjewelry"><Facebook className="w-4 h-4" /></a>
+              <a href="https://tiktok.com/@selenjewelry" target="_blank" rel="noopener noreferrer" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="TikTok @selenjewelry"><TikTokIcon className="w-4 h-4" /></a>
               <a href="mailto:contacto@selenjewelry.com" className="opacity-65 hover:opacity-100 hover:text-gold-light transition-all" aria-label="Email"><Mail className="w-4 h-4" /></a>
             </div>
+            <p className="text-xs opacity-55 mt-3">@selenjewelry</p>
           </div>
 
           {/* Quick Links */}
