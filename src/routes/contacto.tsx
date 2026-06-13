@@ -21,7 +21,7 @@ export const Route = createFileRoute("/contacto")({
           name: "SELEN Jewelry",
           url: "https://selenjewelry.com",
           email: "contacto@selenjewelry.com",
-          telephone: "+573001234567",
+          telephone: "+573218891493",
           address: {
             "@type": "PostalAddress",
             streetAddress: "Bogotá",
@@ -95,7 +95,7 @@ function ContactoPage() {
           <div className="grid sm:grid-cols-2 gap-5">
             <div>
               <label className="block text-xs tracking-wider uppercase text-muted-foreground mb-1.5">Teléfono / WhatsApp</label>
-              <input type="tel" value={form.phone} onChange={update("phone")} className="w-full px-4 py-3 rounded bg-cream border border-border text-sm focus:outline-none focus:border-gold transition-colors" placeholder="+57 300 123 4567" />
+              <input type="tel" value={form.phone} onChange={update("phone")} className="w-full px-4 py-3 rounded bg-cream border border-border text-sm focus:outline-none focus:border-gold transition-colors" placeholder="+57 321 8891493" />
             </div>
             <div>
               <label className="block text-xs tracking-wider uppercase text-muted-foreground mb-1.5">Interés</label>
@@ -129,7 +129,7 @@ function ContactoPage() {
             <div className="space-y-4">
               {[
                 { icon: Mail, label: "contacto@selenjewelry.com", href: "mailto:contacto@selenjewelry.com" },
-                { icon: Phone, label: "+57 300 123 4567 (WhatsApp)", href: "https://wa.me/573001234567" },
+                { icon: Phone, label: "+57 321 8891493 (WhatsApp)", href: "https://wa.me/573218891493" },
                 { icon: MapPin, label: "Bogotá, Colombia 🇨🇴", href: undefined },
               ].map(({ icon: Icon, label, href }) => (
                 <div key={label} className="flex items-center gap-3">

@@ -174,7 +174,7 @@ function DisenosPersonalizadosPage() {
           </div>
           <div>
             <label className="block text-xs tracking-wider uppercase text-muted-foreground mb-1.5">Teléfono / WhatsApp</label>
-            <input type="tel" value={form.phone} onChange={update("phone")} className="w-full px-4 py-3 rounded bg-cream border border-border text-sm focus:outline-none focus:border-gold transition-colors" placeholder="+57 300 123 4567" />
+            <input type="tel" value={form.phone} onChange={update("phone")} className="w-full px-4 py-3 rounded bg-cream border border-border text-sm focus:outline-none focus:border-gold transition-colors" placeholder="+57 321 8891493" />
           </div>
           <div>
             <label className="block text-xs tracking-wider uppercase text-muted-foreground mb-1.5">Tipo de pieza *</label>
@@ -223,8 +223,8 @@ function DisenosPersonalizadosPage() {
 
         <div className="text-center mt-8">
           <p className="text-xs text-muted-foreground">¿Prefieres hablar directamente? Contáctanos por WhatsApp:</p>
-          <a href="https://wa.me/573001234567" className="inline-flex items-center gap-2 mt-2 text-gold-dark text-sm font-medium hover:text-gold transition-colors">
-            <Phone className="w-4 h-4" /> +57 300 123 4567
+          <a href="https://wa.me/573218891493" className="inline-flex items-center gap-2 mt-2 text-gold-dark text-sm font-medium hover:text-gold transition-colors">
+            <Phone className="w-4 h-4" /> +57 321 8891493
           </a>
         </div>
       </section>
