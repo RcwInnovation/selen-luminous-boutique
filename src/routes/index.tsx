@@ -115,10 +115,10 @@ function HomePage() {
         {/* Editorial model gallery — desktop only, borderless */}
         <div className="hidden lg:grid grid-cols-4 gap-0 mb-16 -mx-4 sm:-mx-6 lg:-mx-8">
           {[
-            { src: model1, alt: "Collar delicado de oro 18K con dije de esmeralda colombiana SELEN" },
-            { src: model2, alt: "Pulsera de bebé en oro y pulsera de mamá — joyería delicada SELEN" },
-            { src: model3, alt: "Arete argolla de oro con esmeralda colombiana SELEN" },
-            { src: model4, alt: "Pulsera de bebé en oro 18K con dije corazón — joyería infantil SELEN" },
+            { src: model1, alt: "Dije de esmeralda colombiana con halo de diamantes en oro 18K — SELEN" },
+            { src: model2, alt: "Anillo de cóctel con esmeralda colombiana corte cojín y diamantes en oro 18K — SELEN" },
+            { src: model3, alt: "Arete topo de esmeralda colombiana verde vibrante en oro — SELEN" },
+            { src: model4, alt: "Pulsera de eslabones en oro 18K con esmeraldas y diamantes — SELEN" },
           ].map((img) => (
             <div key={img.alt} className="relative aspect-[4/5] overflow-hidden group">
               <img
