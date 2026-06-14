@@ -8,6 +8,7 @@ import model1 from "@/assets/model-1.jpg";
 import model2 from "@/assets/model-2.jpg";
 import model3 from "@/assets/model-3.jpg";
 import model4 from "@/assets/model-4.jpg";
+import emeraldCertAsset from "@/assets/emerald-certificate.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -208,31 +209,70 @@ function HomePage() {
       </section>
 
       {/* Emerald Collection Highlight */}
-      <section className="py-20 bg-foreground text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs tracking-[0.3em] uppercase text-gold-light mb-2">Colección Especial</p>
-          <h2 className="font-heading text-3xl sm:text-4xl font-light mb-4">El Brillo de la Esmeralda Colombiana</h2>
-          <div className="gold-divider mx-auto mb-8" />
-          <p className="text-primary-foreground/70 max-w-2xl mx-auto mb-10">
-            La esmeralda colombiana, piedra de la sabiduría y el renacimiento, se encuentra con el oro en una colección que celebra la fuerza y la delicadeza femenina. Piezas únicas de alta joyería artesanal.
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
-            {[
-              { icon: Gem, label: "Esmeraldas Colombianas Naturales" },
-              { icon: Shield, label: "Certificado de Autenticidad" },
-              { icon: Star, label: "Acabado Artesanal Premium" },
-              { icon: Heart, label: "Diseño con Alma y Significado" },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="text-center">
-                <div className="w-12 h-12 rounded-full border border-gold-light/30 flex items-center justify-center mx-auto mb-3">
-                  <Icon className="w-5 h-5 text-gold-light" />
-                </div>
-                <p className="text-xs tracking-wide text-primary-foreground/70">{label}</p>
+      <section className="py-20 bg-foreground text-primary-foreground overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[42%_58%] lg:gap-14 lg:items-center">
+            {/* Title */}
+            <div className="order-1 lg:col-start-1 lg:row-start-1 text-center lg:text-left">
+              <p className="text-xs tracking-[0.3em] uppercase text-gold-light mb-2">Colección Especial</p>
+              <h2 className="font-heading text-3xl sm:text-4xl font-light mb-4">El Brillo de la Esmeralda Colombiana</h2>
+              <div className="gold-divider mx-auto lg:mx-0" />
+            </div>
+
+            {/* Description */}
+            <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2 text-center lg:text-left">
+              <p className="text-primary-foreground/70 max-w-2xl mx-auto lg:mx-0">
+                La esmeralda colombiana, piedra de la sabiduría y el renacimiento, se encuentra con el oro en una colección que celebra la fuerza y la delicadeza femenina. Piezas únicas de alta joyería artesanal.
+              </p>
+            </div>
+
+            {/* Premium Photograph */}
+            <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-3 lg:self-stretch relative min-h-[280px] sm:min-h-[360px] lg:min-h-[520px] -mx-4 sm:-mx-6 lg:mx-0 lg:-mr-8 xl:-mr-12">
+              <img
+                src={emeraldCertAsset.url}
+                alt="Anillo de esmeralda colombiana con certificado gemológico — alta joyería SELEN"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* Fade overlay: horizontal on desktop (left → transparent), vertical on mobile */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, hsl(var(--foreground)) 0%, transparent 18%, transparent 82%, hsl(var(--foreground)) 100%)",
+                }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{
+                  background:
+                    "linear-gradient(to right, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.85) 14%, hsl(var(--foreground) / 0.35) 32%, transparent 55%)",
+                }}
+              />
+            </div>
+
+            {/* Benefits */}
+            <div className="order-4 lg:order-none lg:col-start-1 lg:row-start-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-6 max-w-3xl mx-auto lg:mx-0">
+                {[
+                  { icon: Gem, label: "Esmeraldas Colombianas Naturales" },
+                  { icon: Shield, label: "Certificado de Autenticidad" },
+                  { icon: Star, label: "Acabado Artesanal Premium" },
+                  { icon: Heart, label: "Diseño con Alma y Significado" },
+                ].map(({ icon: Icon, label }) => (
+                  <div key={label} className="text-center lg:text-left lg:flex lg:items-center lg:gap-3">
+                    <div className="w-12 h-12 shrink-0 rounded-full border border-gold-light/30 flex items-center justify-center mx-auto lg:mx-0 mb-3 lg:mb-0">
+                      <Icon className="w-5 h-5 text-gold-light" />
+                    </div>
+                    <p className="text-xs tracking-wide text-primary-foreground/70">{label}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Testimonials */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
