@@ -22,7 +22,7 @@ const slides = [
     titleAccent: "cada momento",
     description:
       "Piezas delicadas en oro y esmeralda para acompañarte con sofisticación natural.",
-    objectPosition: "object-[35%_center] sm:object-center",
+    objectPosition: "object-[72%_top] sm:object-[center_top]",
   },
   {
     image: heroSlide3,
