@@ -8,6 +8,7 @@ import model1 from "@/assets/model-1.jpg";
 import model2 from "@/assets/model-2.jpg";
 import model3 from "@/assets/model-3.jpg";
 import model4 from "@/assets/model-4.jpg";
+import emeraldCertAsset from "@/assets/emerald-certificate.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
