@@ -234,21 +234,31 @@ function HomePage() {
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Fade overlay: horizontal on desktop (left → transparent), vertical on mobile */}
+              {/* Fade overlay: vertical (top/bottom) on all sizes */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(to bottom, hsl(var(--foreground)) 0%, transparent 18%, transparent 82%, hsl(var(--foreground)) 100%)",
+                    "linear-gradient(to bottom, var(--foreground) 0%, transparent 22%, transparent 78%, var(--foreground) 100%)",
                 }}
               />
+              {/* Horizontal fade on desktop: deep left → image right */}
               <div
                 className="absolute inset-0 pointer-events-none hidden lg:block"
                 style={{
                   background:
-                    "linear-gradient(to right, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.85) 14%, hsl(var(--foreground) / 0.35) 32%, transparent 55%)",
+                    "linear-gradient(to right, var(--foreground) 0%, var(--foreground) 18%, color-mix(in oklab, var(--foreground), transparent 40%) 38%, transparent 62%)",
                 }}
               />
+              {/* Subtle right-edge fade on desktop to blend the photo edge */}
+              <div
+                className="absolute inset-0 pointer-events-none hidden lg:block"
+                style={{
+                  background:
+                    "linear-gradient(to left, var(--foreground) 0%, transparent 12%)",
+                }}
+              />
+
             </div>
 
             {/* Benefits */}
